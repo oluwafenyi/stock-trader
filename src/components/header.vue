@@ -4,7 +4,7 @@
       <router-link class="navbar-brand" to="/" tag="a">Stock Trader</router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon" @click="isDropdownOpen = !isDropdownOpen"></span>
       </button>
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -14,17 +14,17 @@
           <router-link class="nav-link" to="/stocks" tag="a" active-class="active">Stocks</router-link>
         </li>
       </ul>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown" :class="{ show: isDropdownOpen }">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" style="cursor: pointer;" @click.prevent="endDay">End Day</a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown" :class="{ show: isDropdownOpen }" @click="isDropdownOpen = !isDropdownOpen">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              data-toggle="dropdown" aria-haspopup="true" :aria-expanded="isDropdownOpen">
               Save & Load
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <div class="dropdown-menu" :class="{ show: isDropdownOpen }" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" style="cursor: pointer;" @click.prevent="save">Save Data</a>
               <a class="dropdown-item" style="cursor: pointer;" @click.prevent="load">Load Data</a>
             </div>
@@ -42,6 +42,11 @@
   import { mapGetters, mapActions } from 'vuex';
 
   export default {
+    data() {
+      return {
+        isDropdownOpen: false,
+      }
+    },
     computed: {
       ...mapGetters([
         'funds'

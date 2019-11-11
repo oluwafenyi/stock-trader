@@ -29,6 +29,7 @@
     padding: 4px;
     width: 60%;
     height: 30px;
+    outline: none;
   }
 
   .stock-item {
@@ -66,6 +67,10 @@
     margin: 0 5px;
     padding: 0 8px;
     height: 30px;
+  }
+
+  .danger {
+    border-color: lightcoral;
   }
 
   .slide-enter {

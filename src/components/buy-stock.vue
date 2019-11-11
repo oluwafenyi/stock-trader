@@ -5,8 +5,8 @@
       <span class="stock-item__price buy">(Price: {{ price }})</span>
     </div>
     <div class="stock-item__body buy">
-      <input type="number" placeholder="Quantity" v-model="quantity">
-      <button @click="buy({ name, quantity: Math.abs(quantity) })" :class="{ activate: quantity, buy: true }">Buy</button>
+      <input type="number" placeholder="Quantity" :class="{ danger: fundsInsufficient }" v-model.number="quantity">
+      <button @click="buy({ name, quantity: Math.abs(quantity) })" class="buy" :disabled="quantity <= 0 || !Number.isInteger(quantity) || fundsInsufficient">{{ !fundsInsufficient ? 'Buy' : 'Insufficient Funds' }}</button>
     </div>
   </div>
 </template>
@@ -26,8 +26,15 @@
       //   'buy',
       // ]),
       buy(obj) {
-        this.$store.dispatch('buy', obj);
-        this.quantity = '';
+        if (obj.quantity) {
+          this.$store.dispatch('buy', obj);
+          this.quantity = '';
+        }
+      }
+    },
+    computed: {
+      fundsInsufficient() {
+        return this.quantity * (this.price/1000) > this.$store.state.funds;
       }
     },
   }
@@ -60,7 +67,7 @@
     border-color: #93d693;
   }
 
-  button.activate.buy {
+  button.buy:not(:disabled) {
     background: #288128;
     border-color: #288128;
   }
