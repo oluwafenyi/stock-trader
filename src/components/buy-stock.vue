@@ -12,8 +12,6 @@
 </template>
 
 <script>
-  // import { mapActions } from 'vuex';
-
   export default {
     data() {
       return {
@@ -22,9 +20,6 @@
     },
     props: ['price', 'name'],
     methods: {
-      // ...mapActions([
-      //   'buy',
-      // ]),
       buy(obj) {
         if (obj.quantity) {
           this.$store.dispatch('buy', obj);

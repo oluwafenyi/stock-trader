@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <app-header></app-header>
-    <transition name="slide" mode="out-in">
+    <!-- <transition name="slide" mode="out-in"> -->
       <router-view></router-view>
-    </transition>
+    <!-- </transition> -->
   </div>
 </template>
 
@@ -18,9 +18,29 @@
 </script>
 
 <style>
+  * {
+    box-sizing: border-box;
+  }
+
   body {
-    width: 80%;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    max-width: 900px;
     margin: auto;
+  }
+
+  h1 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: .5rem;
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: .5rem;
+    font-size: 1.5rem;
   }
 
   input {
@@ -34,8 +54,9 @@
 
   .stock-item {
     width: 45%;
-    display: inline-block;
-    margin: 0 20px;
+    min-width: 350px;
+    display: block;
+    margin: 0 auto;
     margin-bottom: 40px;
   }
 
@@ -69,6 +90,14 @@
     height: 30px;
   }
 
+  @media (min-width: 52rem) {
+    .stock-item {
+      display: inline-block;
+      margin: 0 20px;
+      margin-bottom: 40px;
+    }
+  }
+
   .danger {
     border-color: lightcoral;
   }
@@ -91,6 +120,10 @@
 
   .slide-move {
     transition: transform .5s
+  }
+
+  .active {
+    color: #212529;
   }
 
   @keyframes slide-in {

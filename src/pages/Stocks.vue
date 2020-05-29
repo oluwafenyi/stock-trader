@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <app-buy-stock v-for="(stock, index) in stocks" :key="index" :price="stock.price" :name="stock.name"></app-buy-stock>
+    <app-buy-stock v-for="(stock, index) in stocks" :key="index" :price="stock.price" :name="stock.name"></app-buy-stock>
   </div>
 </template>
 
@@ -19,3 +19,7 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+
+</style>

@@ -4,7 +4,7 @@
         <p>You may Save & Load your Data</p>
         <p>Click on 'End Day' to begin a new Day!</p>
         <hr>
-        <h3>Your Funds: {{ funds | monify }}</h3>
+        <h3>Your Funds: <span :style="{ color: Math.round(funds) > 0 ? 'green': 'red' }">{{ funds | monify }}</span></h3>
     </div>
 </template>
 
